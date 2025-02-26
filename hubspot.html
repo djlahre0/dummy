@@ -152,12 +152,12 @@ _hsp.push(['addPrivacyConsentListener', function(consent){
 <div class="row-fluid-wrapper row-depth-1 row-number-2 dnd-row">
 <div class="row-fluid ">
 <div class="span12 widget-span widget-type-custom_widget dnd-module" style="" data-widget-type="custom_widget" data-x="0" data-w="12">
-<div id="hs_cos_wrapper_widget_1740591359124-186638352145" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><script>
+<div id="hs_cos_wrapper_widget_1740593356622-186638352145" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><!-- <script>
   // html 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("123 DOM is fully loaded and parsed 123");
+    console.log("456 DOM is fully loaded and parsed 123");
     // Your code here
-  fetch("https://23900879.hs-sites.com/_hcms/api/test-get-contacts", {
+  fetch("https://47426255.hs-sites.com/_hcms/api/test-get-contacts", {
 						method: "GET",
 						headers: {
 							"Access-Control-Allow-Origin": "*",
@@ -166,14 +166,59 @@ document.addEventListener("DOMContentLoaded", function() {
 						.then(response => response.text())
 						.then(result => {
 
-						console.log("123 get test contact result -->", result)
+						console.log("123 get test contact result --", result)
 					})
 						.catch(error => {
 						console.log('error', error)
 
 					});
 });
-</script></div>
+</script> -->
+
+
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HubSpot Contacts</title>
+
+
+    <h2>First 5 Contacts</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="contactsTable">
+        </tbody>
+    </table>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("https://47426255.hs-sites.com//_hcms/api/test-get-contacts")
+                .then(response => response.json())
+                .then(data => {
+                    const contacts = data.results.slice(0, 5); // Get first 5 contacts
+                    const tableBody = document.getElementById("contactsTable");
+                    
+                    contacts.forEach(contact => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${contact.properties.firstname}</td>
+                            <td>${contact.properties.email}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.log('Error:', error));
+        });
+    </script>
+
+</div>
 
 </div><!--end widget-span -->
 </div><!--end row-->
